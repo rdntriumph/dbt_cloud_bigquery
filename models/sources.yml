@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw order data loaded into BigQuery
+    database: project-c65854a4-202a-4b6f-be0
+    schema: dbt_rdntriumph
+
+    tables:
+      - name: orders
+        identifier: raw_orders
+        description: One record per raw order

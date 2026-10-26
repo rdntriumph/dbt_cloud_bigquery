@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: Cleaned and standardized order records
+    columns:
+      - name: order_id
+        description: Unique identifier for each order
+        tests:
+          - not_null
+          - unique
+
+      - name: status
+        tests:
+          - not_null
+
+  - name: int_orders_enriched
+    description: Order records with business classifications
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_orders
+    description: Final order fact table for reporting
+    columns:
+      - name: order_id
+        description: Unique order identifier
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - completed
+                - pending
+                - cancelled
